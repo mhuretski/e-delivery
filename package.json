@@ -1,0 +1,16 @@
+{
+  "name": "ed-bot",
+  "version": "1.0.0",
+  "description": "telegram bot to check e-delivery",
+  "main": "e.js",
+  "author": "mhuretski",
+  "license": "ISC",
+  "scripts": {
+    "start": "node e.js"
+  },
+  "dependencies": {
+    "jsdom": "^16.2.2",
+    "node-fetch": "^2.6.0",
+    "telebot": "^1.3.0"
+  }
+}
