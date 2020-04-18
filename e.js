@@ -35,15 +35,20 @@ function findSlot() {
 						e.textContent.includes(city) &&
 						!e.textContent.includes('Доступное время отсутствует')
 						) return e
-				})
+                })
 			if  (result.length > 0) {
 				const message = result.map(item => {
 					const nameElem = item.querySelector('a')
-                    const name = (nameElem) ? nameElem.innerText : ''
-					const time =  item.innerText.split('\n').filter(e => e !== name).join(' и ')
+                    const name = (nameElem) ? nameElem.textContent : ''
+                    const time =  item.innerHTML
+                        .split('<br>')
+                        .filter(e => !e.includes(name))
+                        .map(e => e.replace(/&nbsp;/gi, ' ')
+                            .replace(/\<[^"]+?\>/g, '')
+                        ).join(' и ')
 					return `[${name}, ${time}]`
 				}).join(', ')
-				bot.sendMessage(CHAT_ID, message)
+                bot.sendMessage(CHAT_ID, message)
 	
 				eTimer.setInterval(searchPeriodAfterSlotFound)
 			} else {
