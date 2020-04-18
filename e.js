@@ -39,8 +39,8 @@ function findSlot() {
 			if  (result.length > 0) {
 				const message = result.map(item => {
 					const nameElem = item.querySelector('a')
-					const name = (nameElem) ? nameElem.textContent : ''
-					const time = item.textContent.replace(name, '')
+                    const name = (nameElem) ? nameElem.innerText : ''
+					const time =  item.innerText.split('\n').filter(e => e !== name).join(' и ')
 					return `[${name}, ${time}]`
 				}).join(', ')
 				bot.sendMessage(CHAT_ID, message)
